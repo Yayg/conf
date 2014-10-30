@@ -1,31 +1,88 @@
-" My super vim config
+"                       "
+"   Yayg's vim config   "
+"    No comments ...    "
+"                       "
 
-set nocompatible              " be iMproved, required
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid
+
+set nocompatible
 filetype off                  " required
+
+
+"                   "
+"  GLOBAL SETTINGS  "
+"                   "
+
+
+"+--- Graphics ---+"
+syntax on " Enable syntax highlighting
+set number
+set relativenumber " Enable relative line number
+
+
+"+--- Coding Style ---+"
+set list
+set listchars=trail:•,extends:#,nbsp:. "Highlight problematic indent
+set colorcolumn=+1                  " Set a colored column to textwidth + 1
+set textwidth=79                    " 'Max' text width
+filetype indent on
+set autoindent                      " Indent when filetype fail
+set softtabstop=4                   " Number of spaces when you press tab
+set smarttab
+set shiftwidth=4                    " Indent level
+set expandtab                       " Replace classical tabs by spaces
+
+
+"+--- Misc ---+"
+" Reload a file when it is changed from the outside
+set autoread
+set hlsearch                        " Highlight search term
+set wildmenu                        " Command line completion
+set wildmode=list:longest:full      " Command line completion kind
+
+
+
+"                   "
+"    VUNDLE AREA    "
+"                   "
 
 "+--- Set up vundle ---+"
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+"call vundle#begin('~/some/path/')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+
+"+--- Syntastic ---+"
+Plugin 'scrooloose/syntastic'
+let g:syntastic_c_compiler='gcc' " Use clang instead of gcc
+let g:syntastic_c_compiler_options = '-Wall -Wextra -pedantic -std=c99'
+let g:syntastic_c_check_header=1 " Check headers in c
+let g:syntastic_cpp_compiler = 'clang++' " Use clang++ instead of g++
+let g:syntastic_cpp_compiler_options = '-Wall -Wextra -pedantic -std=c++11'
+let g:syntastic_cpp_check_header=1 " Check headers in c++
+let g:syntastic_ocaml_use_ocamlc =0 "dd Use ocamlc instead of ocamlopt
 
 
-
-"+--- Graphics ---+"
-syntax on " Enable syntax highlighting
-set number " Enable line number
-set relativenumber " Enable relative line number
+"+--- Completion ---+"
+Plugin 'Valloric/YouCompleteMe'
 
 
+"+--- Colorscheme ---+"
+Plugin 'spf13/vim-colors'
+Plugin 'bling/vim-airline'
+set laststatus=2
+let g:Powerline_symbols = "fancy"
+let g:airline_powerline_fonts =0
+" unicode symbols
+  let g:airline_left_sep = '»'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '«'
+  let g:airline_right_sep = '◀'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
