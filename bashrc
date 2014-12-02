@@ -18,6 +18,8 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
 
+export TERM=screen-256color
+
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
@@ -25,6 +27,15 @@ export NNTPSERVER='news.epita.fr'
 export PAGER=most
 
 export GOPATH="$HOME/go"
+
+alias valala='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --trace-children=yes'
+alias savekey='eval `ssh-agent`; ssh-add'
+alias mkcd='_(){ mkdir $1; cd $1;}; _'
+alias mkAuthors='echo "* gozlan_r" > AUTHORS'
+alias mkGitignore='echo -e "*\n!Makefile\!AUTHORS\n!README\n!TODO\n!*.cc\n!*.hh\n!*.c\n!*.h" > AUTHORS'
+alias mkReadmeTodo='cp ~/.default_repo/* ./'
+alias mkrepo='mkdir src check doc; mkAuthors; mkReadmeTodo; mkGitignore'
+
 alias l='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
@@ -40,9 +51,11 @@ alias bright='xrandr --output LVDS --brightness '
 alias locate='find / | grep'
 alias slrn='slrn -f ~/.jnewsrc'
 
+alias p='ping 8.8.8.8'
 alias padon='synclient TouchpadOff=0'
 alias padoff='synclient TouchpadOff=1'
-alias clang='clang -Wall -Wextra -std=c99 -O2'
+alias clang='clang -g3 -Wall -Wextra -std=c99 -pedantic -Werror'
+alias gpp='clang++ -Wall -Wextra -Werror -std=c++1y -pedantic'
 alias jogsoul='~/jogsoul/jogsoul.pl ~/jogsoul/jogsoul.conf'
 alias taille='~/tp/taille'
 alias connect='ssh yayg@91.121.83.195'

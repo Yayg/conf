@@ -3,7 +3,7 @@
 "    No comments ...    "
 "                       "
 
-let g:hybrid_use_Xresources = 1
+let g:hybrid_use_Xresources = 0
 colorscheme hybrid
 
 set nocompatible
