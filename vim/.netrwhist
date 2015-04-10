@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/home/gozlan_r/asm/moulinette/tp06/tests/4-nth-test'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/yayg/asm/moulinette/tps4/herve_d-tps4/2015-03-herve_d-tps4'
+let g:netrw_dirhist_2='/home/yayg/asm/moulinette/tps4/gaudro_m-tps4/gaudro_m-donjon2015'
+let g:netrw_dirhist_3='/home/yayg/project/flihabi/kernel/core/slash'
+let g:netrw_dirhist_4='/home/yayg/shit/bdd'
+let g:netrw_dirhist_5='/home/yayg/shit/gozlan_r-atelier-bd-j4'
+let g:netrw_dirhist_6='/etc/systemd/system/tftpd.service.d'

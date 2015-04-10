@@ -1,12 +1,17 @@
 if [ -f /etc/bash_completion ]; then
 	    . /etc/bash_completion
 fi
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+	    . /usr/share/bash-completion/bash_completion
+fi
 
 [ -n "$XTERM_VERSION" ] && transset -a >/dev/null
 
 xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
+
+source ~/.git-completion.bash
 
 shopt -s cdspell
 shopt -s checkwinsize
@@ -25,6 +30,7 @@ export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 export NNTPSERVER='news.epita.fr'
 export PAGER=most
+export EDITOR=vim
 
 export GOPATH="$HOME/go"
 
@@ -47,16 +53,17 @@ alias free='fdfree -m'                      # show sizes in MB
 alias np='nano PKGBUILD'
 alias slip='echo Caleçon'
 alias rm='rm -rf -i'
-alias bright='xrandr --output LVDS --brightness '
+alias bright='xrandr --output VGA1 --brightness '
 alias locate='find / | grep'
 alias slrn='slrn -f ~/.jnewsrc'
 
-alias p='ping 8.8.8.8'
+alias p='while (ping 8.8.8.8 -c 4; test $? -ne 0); do echo FAIL;
+perl ~/.jogsoul.pl; done'
 alias padon='synclient TouchpadOff=0'
 alias padoff='synclient TouchpadOff=1'
 alias clang='clang -g3 -Wall -Wextra -std=c99 -pedantic -Werror'
 alias gpp='clang++ -Wall -Wextra -Werror -std=c++1y -pedantic'
-alias jogsoul='~/jogsoul/jogsoul.pl ~/jogsoul/jogsoul.conf'
+alias jogsoul='~/.jogsoul.pl'
 alias taille='~/tp/taille'
 alias connect='ssh yayg@91.121.83.195'
 alias lock='cmatrix -s && zlock'

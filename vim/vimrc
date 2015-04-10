@@ -3,12 +3,12 @@
 "    No comments ...    "
 "                       "
 
-let g:hybrid_use_Xresources = 0
-colorscheme hybrid
+let g:hybrid_use_Xresources = 1
 
 set nocompatible
-filetype off                  " required
+filetype off    " required
 
+set encoding=utf-8
 
 "                   "
 "  GLOBAL SETTINGS  "
@@ -23,16 +23,15 @@ set relativenumber " Enable relative line number
 
 "+--- Coding Style ---+"
 set list
-set listchars=trail:•,extends:#,nbsp:. "Highlight problematic indent
-set colorcolumn=+1                  " Set a colored column to textwidth + 1
+set listchars=trail:¬,extends:≈ "Highlight problematic indent
 set textwidth=79                    " 'Max' text width
+set colorcolumn=+1                  " Set a colored column to textwidth + 1
 filetype indent on
 set autoindent                      " Indent when filetype fail
 set softtabstop=4                   " Number of spaces when you press tab
 set smarttab
 set shiftwidth=4                    " Indent level
 set expandtab                       " Replace classical tabs by spaces
-
 
 "+--- Misc ---+"
 " Reload a file when it is changed from the outside
@@ -41,6 +40,9 @@ set hlsearch                        " Highlight search term
 set wildmenu                        " Command line completion
 set wildmode=list:longest:full      " Command line completion kind
 
+map <PageUp> :bn<CR>
+map <PageDown> :bp<CR>
+
 
 
 "                   "
@@ -48,13 +50,29 @@ set wildmode=list:longest:full      " Command line completion kind
 "                   "
 
 "+--- Set up vundle ---+"
+
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-"call vundle#begin('~/some/path/')
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'vim-scripts/dbext.vim'
 
 
 "+--- Syntastic ---+"
@@ -63,13 +81,42 @@ let g:syntastic_c_compiler='gcc' " Use clang instead of gcc
 let g:syntastic_c_compiler_options = '-Wall -Wextra -pedantic -std=c99'
 let g:syntastic_c_check_header=1 " Check headers in c
 let g:syntastic_cpp_compiler = 'clang++' " Use clang++ instead of g++
-let g:syntastic_cpp_compiler_options = '-Wall -Wextra -pedantic -std=c++11'
+let g:syntastic_cpp_compiler_options = '-Wall -Wextra -std=c++11'
 let g:syntastic_cpp_check_header=1 " Check headers in c++
 let g:syntastic_ocaml_use_ocamlc =0 "dd Use ocamlc instead of ocamlopt
-
+let g:syntastic_c_include_dirs = [ '../includes', '../headers' , '../include' , 'includes', 'headers' , 'include' ]
+let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_c_errorformat = '%f:%l:%c: %trror: qwedqwdqwdwqdqwdqwd %m'
 
 "+--- Completion ---+"
 Plugin 'Valloric/YouCompleteMe'
+"let g:ycm_confirm_extra_conf = 1
+let g:ycm_register_as_syntastic_checker = 1 "default 1
+"let g:Show_diagnostics_ui = 1 "default 1
+"
+""will put icons in Vim's gutter on lines that have a diagnostic set.
+"Turning this off will also turn off the YcmErrorLine and YcmWarningLine
+""highlighting
+"let g:ycm_enable_diagnostic_signs = 1
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_always_populate_location_list = 0 "default 0
+"let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+
+"let g:ycm_complete_in_strings = 1 "default 1
+"let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2' "default ''
+
+"let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug' "default info
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'  "where to search for .ycm_extra_conf.py if not found
+
+"let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+"let g:ycm_filetype_whitelist = { '*': 1 }
+"let g:ycm_key_invoke_completion = '<C-Space>'
+
+"nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
 
 
 "+--- Colorscheme ---+"
@@ -77,12 +124,28 @@ Plugin 'spf13/vim-colors'
 Plugin 'bling/vim-airline'
 set laststatus=2
 let g:Powerline_symbols = "fancy"
-let g:airline_powerline_fonts =0
+let g:airline_powerline_fonts =1
+let g:airline#extensions#tabline#enabled = 1
+
 " unicode symbols
-  let g:airline_left_sep = '»'
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '«'
-  let g:airline_right_sep = '◀'
+    if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+    let g:airline_left_sep = '»'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '<'
+    let g:airline_left_sep = '>'
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = 'Ξ'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.whitespace = 'Ξ'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -98,3 +161,11 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+colorscheme railscasts "peaksea molokai ir_black
+
+"+--------More Stuff--------+"
+
+highlight ColorColumn ctermbg=lightgrey guibg=black
+
+"Inoremap TODO
