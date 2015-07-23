@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/yayg/asm/moulinette/tps4/herve_d-tps4/2015-03-herve_d-tps4'
-let g:netrw_dirhist_2='/home/yayg/asm/moulinette/tps4/gaudro_m-tps4/gaudro_m-donjon2015'
-let g:netrw_dirhist_3='/home/yayg/project/flihabi/kernel/core/slash'
-let g:netrw_dirhist_4='/home/yayg/shit/bdd'
-let g:netrw_dirhist_5='/home/yayg/shit/gozlan_r-atelier-bd-j4'
-let g:netrw_dirhist_6='/etc/systemd/system/tftpd.service.d'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/yayg/epita/gozlan_r-chess/src/chessboard'
+let g:netrw_dirhist_2='/home/yayg/project/Flihabi/config-files/pxe/ipxe'
+let g:netrw_dirhist_3='/home/yayg/project/Flihabi/tolk/dependencies/commons'
+let g:netrw_dirhist_4='/home/yayg/epita/gozlan_r-cxxa/src/ast'
+let g:netrw_dirhist_5='/home/yayg/epita/gozlan_r-cxxa/src'
+let g:netrw_dirhist_6='/home/yayg/shit'
+let g:netrw_dirhist_7='/home/yayg/project/Flihabi/tinykore/core/core-root'
+let g:netrw_dirhist_8='/home/yayg/.minecraft'

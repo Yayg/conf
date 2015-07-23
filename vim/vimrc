@@ -23,7 +23,7 @@ set relativenumber " Enable relative line number
 
 "+--- Coding Style ---+"
 set list
-set listchars=trail:¬,extends:≈ "Highlight problematic indent
+set listchars=trail:•,extends:… "Highlight problematic indent
 set textwidth=79                    " 'Max' text width
 set colorcolumn=+1                  " Set a colored column to textwidth + 1
 filetype indent on
@@ -32,6 +32,7 @@ set softtabstop=4                   " Number of spaces when you press tab
 set smarttab
 set shiftwidth=4                    " Indent level
 set expandtab                       " Replace classical tabs by spaces
+autocmd BufWritePre *.c,*.h,*.cpp,*.cxx,*.cc,*.hh,*.hxx :%s/\s\+$//ge
 
 "+--- Misc ---+"
 " Reload a file when it is changed from the outside
@@ -74,6 +75,8 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'vim-scripts/dbext.vim'
 
+Plugin 'vim-scripts/c.vim'
+
 
 "+--- Syntastic ---+"
 Plugin 'scrooloose/syntastic'
@@ -89,6 +92,9 @@ let g:syntastic_c_remove_include_errors = 1
 let g:syntastic_c_errorformat = '%f:%l:%c: %trror: qwedqwdqwdwqdqwdqwd %m'
 
 "+--- Completion ---+"
+Plugin 'quark-zju/vim-cpp-auto-include'
+autocmd BufWritePre **.cpp :ruby CppAutoInclude::process
+
 Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_confirm_extra_conf = 1
 let g:ycm_register_as_syntastic_checker = 1 "default 1
@@ -150,6 +156,7 @@ let g:airline#extensions#tabline#enabled = 1
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -168,4 +175,3 @@ colorscheme railscasts "peaksea molokai ir_black
 
 highlight ColorColumn ctermbg=lightgrey guibg=black
 
-"Inoremap TODO

@@ -28,6 +28,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec ~/.i3/shell.sh
+bindsym $mod+Shift+Return exec urxvt -cd $(pwd)
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -44,7 +45,7 @@ bindsym $mod+c exec chromium-browser
 
 # Lock
 #bindsym $mod+l exec zlock
-bindsym $mod+l exec i3lock -u --nofork -p win -t -i ~/.lockscreen.old.png
+bindsym $mod+l exec i3lock -u --nofork -p win -t -i ~/.background.png
 bindsym $mod+o exec i3lock -u --nofork -p win -t -i ~/.lockscreen2.png
 bindsym $mod+t exec i3lock -u --nofork -p win -t -i ~/.lockscreen.png
 
@@ -164,5 +165,5 @@ bar {
     colors
     {
         urgent_workspace #cc0000 #2c2c2e #cc0000
-}
+    }
 }

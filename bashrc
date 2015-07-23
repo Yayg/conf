@@ -1,9 +1,12 @@
+export LANG=en_US.UTF-8
 if [ -f /etc/bash_completion ]; then
 	    . /etc/bash_completion
 fi
 if [ -f /usr/share/bash-completion/bash_completion ]; then
 	    . /usr/share/bash-completion/bash_completion
 fi
+
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 [ -n "$XTERM_VERSION" ] && transset -a >/dev/null
 
@@ -34,31 +37,37 @@ export EDITOR=vim
 
 export GOPATH="$HOME/go"
 
+#alias j='autojump'
+[[ -s /home/yayg/.autojump/etc/profile.d/autojump.sh ]] && source /home/yayg/.autojump/etc/profile.d/autojump.sh
+alias gac='git add -A . && git commit'
+alias chtemplate='cp -r Templates ~/.vim/bundle/c.vim/c-support/templates/Templates'
 alias valala='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --trace-children=yes'
 alias savekey='eval `ssh-agent`; ssh-add'
 alias mkcd='_(){ mkdir $1; cd $1;}; _'
 alias mkAuthors='echo "* gozlan_r" > AUTHORS'
 alias mkGitignore='echo -e "*\n!Makefile\!AUTHORS\n!README\n!TODO\n!*.cc\n!*.hh\n!*.c\n!*.h" > AUTHORS'
-alias mkReadmeTodo='cp ~/.default_repo/* ./'
+alias mktodo='echo TODO-FIXME LIST:; for f in $(find ./src/);\
+do grep -n -H TODO $f; grep -n -H FIXME $f; done'
 alias mkrepo='mkdir src check doc; mkAuthors; mkReadmeTodo; mkGitignore'
 
-alias l='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ls='ls --color=auto'
+alias l='ls -h -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ll='ls -h -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias la='ls -h -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias reload='source ~/.bashrc'
 alias grep='grep --color=tty -d skip'
 alias cp="cp -i"                          # confirm before overwriting something
-alias ddsqfqsf='df -h'                          # human-readable sizes
-alias free='fdfree -m'                      # show sizes in MB
+alias ddsqfqsf='df -h'                    # human-readable sizes
+alias free='fdfree -m'                    # show sizes in MB
 alias np='nano PKGBUILD'
 alias slip='echo Caleçon'
 alias rm='rm -rf -i'
-alias bright='xrandr --output VGA1 --brightness '
+alias bright='xrandr --output eDP1 --brightness '
 alias locate='find / | grep'
 alias slrn='slrn -f ~/.jnewsrc'
 
-alias p='while (ping 8.8.8.8 -c 4; test $? -ne 0); do echo FAIL;
-perl ~/.jogsoul.pl; done'
+alias jog='while (perl ~/.jogsoul.pl ~/.jogsoul.conf; test $? -ne 0); do echo FAIL; done'
+alias p='jog; while (ping 8.8.8.8 -c 4; test $? -ne 0); do echo FAIL; done'
 alias padon='synclient TouchpadOff=0'
 alias padoff='synclient TouchpadOff=1'
 alias clang='clang -g3 -Wall -Wextra -std=c99 -pedantic -Werror'
@@ -68,7 +77,7 @@ alias taille='~/tp/taille'
 alias connect='ssh yayg@91.121.83.195'
 alias lock='cmatrix -s && zlock'
 alias pdf='evince *pdf'
-alias minecraft='java -jar ~/Minecraft.jar'
+#alias minecraft='java -jar ~/Minecraft.jar'
 # ex - archive extractor
 # usage: ex <file>
 ex ()
