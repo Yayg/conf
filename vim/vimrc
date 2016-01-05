@@ -25,12 +25,13 @@ set relativenumber " Enable relative line number
 set list
 set listchars=trail:•,extends:… "Highlight problematic indent
 set textwidth=79                    " 'Max' text width
-set colorcolumn=+1                  " Set a colored column to textwidth + 1
+let &colorcolumn=join(range(81,999),",")
+
 filetype indent on
 set autoindent                      " Indent when filetype fail
-set softtabstop=4                   " Number of spaces when you press tab
+set softtabstop=2                   " Number of spaces when you press tab
 set smarttab
-set shiftwidth=4                    " Indent level
+set shiftwidth=2                    " Indent level
 set expandtab                       " Replace classical tabs by spaces
 autocmd BufWritePre *.c,*.h,*.cpp,*.cxx,*.cc,*.hh,*.hxx :%s/\s\+$//ge
 
@@ -77,6 +78,23 @@ Plugin 'vim-scripts/dbext.vim'
 
 Plugin 'vim-scripts/c.vim'
 
+
+"+--- NerdTree ---+"
+Plugin 'scrooloose/nerdtree'
+let g:NERDTreeDirArrowExpandable = '¬'
+let g:NERDTreeDirArrowCollapsible = '¦'
+
+"+--- Ctags ---+"
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+let g:easytags_async=1
+autocmd FileReadPre * exe ":UpdateTags"
+
+"+--- CtrlP ---+"
+Plugin 'kien/ctrlp.vim'
+
+"+--- Highligth word ---+"
+Plugin 'vasconcelloslf/vim-interestingwords'
 
 "+--- Syntastic ---+"
 Plugin 'scrooloose/syntastic'
@@ -127,6 +145,8 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'  "where to search for .
 
 "+--- Colorscheme ---+"
 Plugin 'spf13/vim-colors'
+
+"+--- Airline ---+"
 Plugin 'bling/vim-airline'
 set laststatus=2
 let g:Powerline_symbols = "fancy"
@@ -173,5 +193,15 @@ colorscheme railscasts "peaksea molokai ir_black
 
 "+--------More Stuff--------+"
 
-highlight ColorColumn ctermbg=lightgrey guibg=black
+highlight ColorColumn ctermbg=black guibg=black
 
+function! GotoDefinition()
+    let n = search("\\<".expand("<cword>")."\\>[^(]*([^)]*)\\s*\\n*\\s*{")
+endfunction
+map <F4> :call GotoDefinition()<CR>
+imap <F4> <c-o>:call GotoDefinition()<CR>
+
+map <C-e> :NERDTreeToggle<CR>
+map <C-k> :call InterestingWords('n')<cr>
+map <C-l> :call UncolorAllWords()<cr>
+source ~/.vim/buffer.vim

@@ -14,6 +14,8 @@ xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
 
+feh --bg-scale ~/Downloads/fire-and-blood.jpg
+
 source ~/.git-completion.bash
 
 shopt -s cdspell
@@ -39,6 +41,8 @@ export GOPATH="$HOME/go"
 
 #alias j='autojump'
 [[ -s /home/yayg/.autojump/etc/profile.d/autojump.sh ]] && source /home/yayg/.autojump/etc/profile.d/autojump.sh
+alias openmisc='sudo cryptsetup open /dev/sda5 misc; sudo mount /dev/mapper/misc /home/yayg/misc'
+alias closemisc='sudo umount /home/yayg/misc; sudo cryptsetup close misc'
 alias gac='git add -A . && git commit'
 alias chtemplate='cp -r Templates ~/.vim/bundle/c.vim/c-support/templates/Templates'
 alias valala='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --show-reachable=yes --trace-children=yes'
@@ -106,3 +110,4 @@ ex ()
 PS1="\[\e[00;37m\]{\[\e[0m\]\[\e[00;33m\]\$?\[\e[0m\]\[\e[00;37m\]}[\[\e[0m\]\[\e[00;31m\]\T\[\e[0m\]\[\e[00;37m\]][\[\e[0m\]\[\e[00;36m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;36m\]\h\[\e[0m\]\[\e[00;37m\] \W]\\$ \[\e[0m\]"
 # PS1='[$?][\u@\h \W]\$ '
 PATH=~/bin:~/.cabal/bin:$PATH
+PATH=~/.local/bin:$PATH

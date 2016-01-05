@@ -105,10 +105,6 @@ bindsym $mod+3 workspace Serveur
 bindsym $mod+4 workspace \_o<
 bindsym $mod+5 workspace coin
 bindsym $mod+6 workspace kwain
-bindsym $mod+7 workspace Etc.
-bindsym $mod+8 workspace Etc..
-bindsym $mod+ccedilla workspace Etc...
-bindsym $mod+agrave workspace No_need
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace Terminal
@@ -116,11 +112,7 @@ bindsym $mod+Shift+2 move container to workspace Firefox
 bindsym $mod+Shift+3 move container to workspace Serveur
 bindsym $mod+Shift+4 move container to workspace \_o<
 bindsym $mod+Shift+5 move container to workspace coin
-bindsym $mod+Shift6 move container to workspace Etc
-bindsym $mod+Shift+egrave move container to workspace Etc.
-bindsym $mod+Shift+underscore move container to workspace Etc..
-bindsym $mod+Shift+ccedilla move container to workspace Etc..
-bindsym $mod+Shift+agrave move container to workspace No_need
+bindsym $mod+Shift+6 move container to workspace kwain
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -167,3 +159,18 @@ bar {
         urgent_workspace #cc0000 #2c2c2e #cc0000
     }
 }
+
+#### STARTUP SCRIPT ###
+
+exec pulseaudio
+
+exec --no-startup-id i3-msg 'workspace Terminal; exec urxvt'
+exec --no-startup-id i3-msg 'workspace Terminal; exec urxvt'
+
+exec --no-startup-id i3-msg 'workspace Firefox; exec chromium'
+exec --no-startup-id i3-msg 'workspace Firefox; exec urxvt -e bash -c alsamixer'
+
+exec --no-startup-id i3-msg 'workspace Serveur; exec urxvt -e bash -c ssh yayg@asm.epita.it'
+exec --no-startup-id i3-msg 'workspace Serveur; exec thunderbird'
+
+### END ###
