@@ -1,5 +1,7 @@
 # Tools backup #
-## Bash ##
-``` curl https://raw.githubusercontent.com/Yayg/creepy-conf/master/bash/install.sh | sh ```
-## Git ##
-``` curl https://raw.githubusercontent.com/Yayg/creepy-conf/master/git/install.sh | sh ```
+## git ##
+``` sh <(curl https://raw.githubusercontent.com/Yayg/conf/master/git/install.sh -L) ```
+## bash ##
+``` sh <(curl https://raw.githubusercontent.com/Yayg/conf/master/bash/install.sh -L) ```
+## vim ##
+``` sh <(curl https://raw.githubusercontent.com/Yayg/conf/master/vim/install.sh -L) ```
